@@ -1,0 +1,55 @@
+package main
+
+import (
+  "fmt"
+  "strings"
+  )
+
+func main(){
+	name := "go conference"
+	const conferenceticket = 50
+	var remaining int 
+	var userf string
+	var userl string
+	var ticket int
+	var email string
+	var booking[]string
+	
+	fmt.Printf("Welcome to %v booking app\n",name)
+	fmt.Println("Get your ticket")
+	fmt.Printf("We have total tickets of %v tickets\n",conferenceticket)
+
+  for{
+	fmt.Println("enter your first name")
+	fmt.Scan(&userf)
+	fmt.Println("enter your last name")
+	fmt.Scan(&userl)
+	fmt.Println("Enter number of tickets")
+	fmt.Scan(&ticket)
+	fmt.Println("Enter your email account")
+	fmt.Scan(&email)
+    isValidName := len(userf) >= 2 && len(userl) >= 2
+    isValidEmail := strings.Contains(email,"@")
+    isValidTickets := ticket > 0 && ticket >= remaining
+    
+    if isValidName && isValidEmail && isValidTickets{
+       remaining = conferenceticket - ticket
+      booking = append(booking,userf +" "+userl)
+     
+	fmt.Printf("Thank you, %v %v for booking %v tickets.Confirmation were sent to %v\n",userf,userl,ticket,email)
+  fmt.Printf("remaining of %v tickets",remaining)
+    firstnames := []string{}
+    for _,booking := range booking {
+      var names = strings.Fields(booking)
+      firstnames = append(firstnames, names[0])
+    }
+  fmt.Printf("first names of bookings:%v\n",firstnames)
+    if remaining == 0 {
+      fmt.Println("our conference is booked out.come back next year")
+      break
+    }
+    }else{
+      fmt.Println("Your input is invalid,Try Again")
+    }
+  }
+}
